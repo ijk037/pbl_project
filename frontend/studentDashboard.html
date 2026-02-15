@@ -5,67 +5,67 @@
   <link rel="stylesheet" href="assets/style.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="assets/script.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="assets/script.js" defer></script>
 </head>
 
 <body>
 
-<div class="container">
+<div class="dashboard-container">
 
-  <h1>📊 Student Performance Dashboard</h1>
+  <h1>📊 My Academic Dashboard</h1>
 
-  <div class="card" id="reportArea">
-
-
-    <h2>Your Exam Records</h2>
-    <div id="studentData"></div>
-
-
-    <div class="stats">
-      <div class="stat-box">
-        <h3>Mid Sem</h3>
-        <p id="mid">75</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>End Sem</h3>
-        <p id="end">85</p>
-      </div>
-
-      <div class="stat-box highlight">
-        <h3>Predicted CGPA</h3>
-        <p id="cgpa">8.0</p>
-      </div>
+  <!-- Summary Cards -->
+  <div class="summary">
+    <div class="card">
+      <h3>Average Mid</h3>
+      <p id="mid">-</p>
     </div>
 
-  <h2>Generate Performance Graph</h2>
+    <div class="card">
+      <h3>Average End</h3>
+      <p id="end">-</p>
+    </div>
 
-<label>Select Subject:</label>
-<select id="subjectSelect"></select>
+    <div class="card highlight">
+      <h3>Predicted</h3>
+      <p id="predictionResult">-</p>
+    </div>
+  </div>
 
-<label>Graph Type:</label>
-<select id="chartType">
-  <option value="bar">Bar</option>
-  <option value="line">Line</option>
-  <option value="pie">Pie</option>
-  <option value="doughnut">Doughnut</option>
-</select>
+  <!-- Prediction Controls -->
+  <div class="prediction-box">
+    <h3>Predict Next Exam</h3>
 
-<label>
-  <input type="checkbox" id="includePrediction">
-  Include Predicted Marks
-</label>
+    <select id="predictType">
+      <option value="mid">Predict Midsem</option>
+      <option value="end">Predict Endsem</option>
+    </select>
 
-<button onclick="generateGraph()">Generate Graph</button>
+    <button onclick="predictMarks()">Predict</button>
+  </div>
 
-<div style="width:600px; margin-top:20px;">
+  <!-- Marks Table -->
+  <h3>Semester Performance</h3>
+  <table id="marksTable">
+    <thead>
+      <tr>
+        <th>Semester</th>
+        <th>Mid</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Chart -->
+  <h3>Progress Chart</h3>
   <canvas id="performanceChart"></canvas>
-</div>
-</div>
 
-  <button class="btn" onclick="downloadPDF()">Download Report</button>
+  <button class="download-btn" onclick="downloadPDF()">
+    Download Full Report
+  </button>
 
 </div>
 

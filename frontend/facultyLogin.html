@@ -4,19 +4,48 @@
   <title>Faculty Login</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
 
-<h2>Faculty Login</h2>
+<body class="faculty-login-bg">
 
-<input id="email" type="text" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password"><br><br>
+<div class="faculty-login-container">
 
-<button onclick="loginFaculty()">Login</button>
+  <div class="faculty-login-card">
 
-<p id="message"></p>
+    <h2>👩‍🏫 Faculty Login</h2>
+    <p class="login-subtitle">
+      Access student records and manage academic performance
+    </p>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email"
+             id="email"
+             placeholder="Enter faculty email">
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password"
+             id="password"
+             placeholder="Enter password">
+    </div>
+
+    <button onclick="loginFaculty()"
+            class="faculty-login-btn">
+      Login as Faculty
+    </button>
+
+    <p id="message" class="error-text"></p>
+
+    <div class="links">
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+  </div>
+
+</div>
 
 <script src="assets/script.js"></script>
 
 </body>
 </html>
-

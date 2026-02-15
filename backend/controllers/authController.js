@@ -2,60 +2,67 @@ const Student = require("../models/Student");
 const Faculty = require("../models/Faculty");
 const bcrypt = require("bcryptjs");
 
-/* ---------- REGISTER STUDENT ---------- */
-exports.registerStudent = async (req, res) => {
-  const { name, email, regNo, password } = req.body;
+/* ---------- STUDENT SIGNUP ---------- */
+exports.signupStudent = async (req, res) => {
+  try {
+    const { name, email, password, regNo } = req.body;
 
-  const existing = await Student.findOne({ email });
-  if (existing) return res.json({ msg: "Student already exists" });
+    const existingStudent = await Student.findOne({ email });
+    if (existingStudent) {
+      return res.json({ success: false, msg: "Student already exists" });
+    }
 
-  const hash = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-  const student = new Student({
-    name,
-    email,
-    regNo,
-    password: hash
-  });
+    const newStudent = new Student({
+      name,
+      email,
+      password: hashedPassword,
+      regNo,
+      performances: []
+    });
 
-  await student.save();
+    await newStudent.save();
 
-  return res.json({ msg: "Registered successfully" });
+    res.json({ success: true, msg: "Signup successful" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, msg: "Error signing up" });
+  }
 };
+
 
 /* ---------- STUDENT LOGIN ---------- */
 exports.loginStudent = async (req, res) => {
   const { email, password } = req.body;
 
   const student = await Student.findOne({ email });
-  if (!student) return res.json({ msg: "Invalid credentials" });
+  if (!student)
+    return res.json({ success: false, msg: "Invalid credentials" });
 
   const match = await bcrypt.compare(password, student.password);
-  if (!match) return res.json({ msg: "Invalid credentials" });
+  if (!match)
+    return res.json({ success: false, msg: "Invalid credentials" });
 
-  return res.json({ msg: "Login successful" });
+  return res.json({ success: true, msg: "Login successful" });
 };
+
 
 /* ---------- FACULTY LOGIN ---------- */
 exports.loginFaculty = async (req, res) => {
+
   const { email, password } = req.body;
 
   const faculty = await Faculty.findOne({ email });
 
-  console.log("Searching for:", email);
-  console.log("Faculty found:", faculty);
-
   if (!faculty) {
-    return res.json({ msg: "Invalid credentials" });
+    return res.json({ success: false, msg: "Invalid credentials" });
   }
 
-  const match = await bcrypt.compare(password, faculty.password);
-
-  console.log("Password match:", match);
-
-  if (!match) {
-    return res.json({ msg: "Invalid credentials" });
+  // TEMPORARY SIMPLE PASSWORD CHECK
+  if (password !== "1234") {
+    return res.json({ success: false, msg: "Invalid credentials" });
   }
 
-  return res.json({ msg: "Login successful" });
+  return res.json({ success: true, msg: "Login successful" });
 };

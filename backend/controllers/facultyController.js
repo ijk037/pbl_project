@@ -30,9 +30,9 @@ exports.uploadMarks = async (req, res) => {
       return res.status(404).json({ msg: "Student not found" });
 
     student.exams.push({
-      mid,
-      end,
-      semester
+      semester: Number(semester),
+      mid: Number(mid),
+      end: Number(end)
     });
 
     await student.save();

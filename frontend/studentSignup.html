@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Login</title>
+  <title>Student Signup</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 
@@ -10,7 +10,12 @@
 <div class="login-container">
   <div class="login-card">
 
-    <h2>🎓 Student Login</h2>
+    <h2>📝 Student Sign Up</h2>
+
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name">
+    </div>
 
     <div class="input-group">
       <label>Email</label>
@@ -19,15 +24,21 @@
 
     <div class="input-group">
       <label>Password</label>
-      <input type="password" id="password" placeholder="Enter your password">
+      <input type="password" id="password" placeholder="Create a password">
     </div>
 
-    <button class="student-btn" onclick="loginStudent()">Login</button>
+    <div class="input-group">
+      <label>Registration Number</label>
+      <input type="text" id="regNo" placeholder="Enter registration number">
+    </div>
+
+    <button class="student-btn" onclick="signupStudent()">Sign Up</button>
 
     <p id="message" class="error-text"></p>
 
     <div class="switch-text">
-      New student? <a href="studentSignup.html">Sign Up</a>
+      Already have an account? 
+      <a href="studentLogin.html">Login</a>
     </div>
 
     <div class="links">
