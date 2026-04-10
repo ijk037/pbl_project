@@ -1,0 +1,30 @@
+
+=================================================
+  PBL RESULTS SUMMARY
+=================================================
+
+CNN CLASSIFICATION (400 test samples)
+  Accuracy  : 100.0%
+  Precision : 100.0%
+  Recall    : 100.0%
+  F1 Score  : 100.0%
+
+  Confusion matrix:
+    True Negatives  (correct no-sat) : 200
+    False Positives (false alarm)     : 0
+    False Negatives (missed sat)      : 0
+    True Positives  (correct detect)  : 200
+
+UKF TRACKING (49 frames)
+  Detections          : 49 / 49 frames
+  Mean position error : 1.40 px
+  Max  position error : 1.43 px
+  True velocity       : vx=2, vy=1 px/frame
+  Final UKF velocity  : vx=2.00, vy=1.00 px/frame
+
+OUTPUT FILES
+  report_output/training_curve.png
+  report_output/confusion_matrix.png
+  report_output/tracking_path.png
+  report_output/velocity_estimate.png
+=================================================
